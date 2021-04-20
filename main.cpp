@@ -16,7 +16,7 @@ static PluginHandle g_pluginHandle = kPluginHandle_Invalid;
 
 static F4SEMessagingInterface* g_messaging = NULL;
 
-// Here's offsets to hook into the main look of fallout4 vr
+// Here's offsets to hook into the main loop of fallout4 vr
 RelocAddr<uintptr_t> hookMainLoopFunc(0xd8187e);
 
 typedef void(*_hookedMainLoop)();
@@ -60,7 +60,7 @@ void printSceneGraph() {
 	// this checks if the player class is loaded
 	if ((*g_player)->unkF0 && (*g_player)->unkF0->rootNode) {
 		// Now let's find the top of the scene graph
-		auto node = (*g_player)->unkF0->rootNode->m_parent->GetAsNiNode();    // Get the pattern of the player root node
+		auto node = (*g_player)->unkF0->rootNode->m_parent->GetAsNiNode();    // Get the parent of the player root node
 
 		while (node->m_parent) {
 			node = node->m_parent->GetAsNiNode();
